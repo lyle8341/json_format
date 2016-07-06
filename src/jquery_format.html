@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用jQuery JSONView</title>
+    <link href="../css/jquery.jsonview.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.jsonview.js"></script>
+</head>
+<body>
+<div id="json"></div>
+<hr>
+<div id="json-collasped"></div>
+
+<script>
+    $(function () {
+        $.ajax({
+            type: 'get',
+            url: "../data/data.json",
+            dataType: "json",
+            success: function (data) {
+                $("#json").JSONView(data);
+                var options = {
+                    collapsed: false,//为true折叠显示
+                    nl2br:false,
+                    recursive_collapser:false,
+                    escape:false //转义key
+                };
+                $("#json-collasped").JSONView(data,options);
+            },
+            error: function(){
+                alert("oh fuck error occur");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
