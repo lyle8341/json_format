@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>格式化json，高亮显示</title>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../js/jsonFormater.js"></script>
+    <link href="../css/jsonFormater.css" rel="stylesheet">
+</head>
+<body>
+<div id="container"></div>
+<div>
+   This is test json Format
+</div>
+<script>
+    $(function () {
+        $.ajax({
+            type: 'get',
+            url: "../data/data.json",
+            dataType: "json",
+            success: function (data) {
+                var options = {
+                    dom: '#container' //
+                };
+                var jsonFormat = new JsonFormater(options);//创建对象
+                jsonFormat.doFormat(data);
+            },
+            error: function(){
+                alert("oh fuck error occur");
+            }
+        });
+    });
+</script>
+</body>
+</html>
